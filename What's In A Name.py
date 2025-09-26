@@ -34,24 +34,10 @@ def remove_title(name):                                                         
     return new_name                                                                                 #return new_name
 
 def reverse_and_display(name):                                                                      #create function
-    '''
-    Takes a string and reverses it
-    Args:
-        name (str): the string that will be reversed
-    Returns:
-        print: the reversed string
-    '''
     reversed_string = name[::-1]                                                                    #set variable reserved_string to last element of list name
     return reversed_string                                                                          #return reversed_string
 
 def vowel_count(name):                                                                              #create function
-    '''
-    Takes a string and returns the number of vowels in it 
-    Args:
-        name (str): the string that its number of vowels are being determined 
-    Returns:
-        print: number of vowels in the string
-    '''
     vc = 0                                                                                          #set vc equal to 0
     vowels = ['a', 'A', 'e', 'E', 'i', 'I', 'o', 'O', 'u', 'U']                                     #create list
     for letter in name:                                                                             #create for loop
@@ -60,13 +46,6 @@ def vowel_count(name):                                                          
     return vc                                                                                       #return vc
 
 def consonant_frequency(name):                                                                      #create function
-    '''
-    Takes a string and returns the number of consonants in it 
-    Args:
-        name (str): the string that its number of consonants are being determined 
-    Returns:
-        print: number of consonants in the string
-    '''
     cc = 0                                                                                          #set cc equal to 0
     vowels = ['a', 'A', 'e', 'E', 'i', 'I', 'o', 'O', 'u', 'U']                                     #create list
     for letter in name:                                                                             #create for loop
@@ -75,13 +54,6 @@ def consonant_frequency(name):                                                  
     return cc                                                                                       #return cc
 
 def return_first_name(name):                                                                        #create function
-    '''
-    Takes a full name and returns the first name
-    Args:
-        name (str): the original full name 
-    Returns:
-        the first name
-    '''
     space = 0                                                                                       #set space equal to 0
     output = ''                                                                                     #set output to ''
     for char in name:                                                                               #create for loop
@@ -98,13 +70,6 @@ def return_first_name(name):                                                    
     return output                                                                                   #return output
 
 def return_last_name(name):                                                                         #create function
-    '''
-    Takes a full name and returns the last name
-    Args:
-        name (str): the original full name 
-    Returns:
-        the last name
-    '''
     space = 0                                                                                       #set space equal to 0
     output = ''                                                                                     #set output to ''
     for char in name:                                                                               #create for loop
@@ -122,13 +87,6 @@ def return_last_name(name):                                                     
     return output                                                                                   #return output
 
 def return_middle_name(name):                                                                       #create function
-    '''
-    Takes a full name , determines if thers a middle name, and returns the possible middle name(s)
-    Args:
-        name (str): the original full name
-    Returns:
-        the middle name(s)
-    '''
     space = 0                                                                                       #set space equal to 0
     for char in name:                                                                               #create for loop
         if char == ' ':                                                                             #if character is ' '
