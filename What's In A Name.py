@@ -1,12 +1,13 @@
 #Molly Zeitlin
 #Asks user for their full name, and provides 12 different options to the user to manipulate their orignal entry.
 #9/30/2025
-#build a menu, remove titles ("Dr.", "Sir", etc.), clear screen, pause during code (using time.sleep)
+#does not work properly with numbers/special characters, title/description cannot be anywhere except at the start of inital input
+#build a menu, reutrns boolean if name contains a title/distinction ("Dr.", "Sir", etc.) remove titles/distinctions ("Dr.", "Sir", etc.), clear screen, pause during code (using time.sleep)
 
 import random                                                                                       #import random library
 import os                                                                                           #import os library
 import time                                                                                         #import time library
-titles = ['Dr.', 'Mrs.', 'Ms.', 'Mr.', 'Sir', 'Esq', 'Ph.d']                                        #create titles list
+titles = ['Dr.', 'dr.', 'Mrs.', 'mrs.', 'Ms.', 'ms.', 'Mr.', 'mr.', 'Sir', 'sir', 'Esq', 'esp', 'Ph.d', 'ph.d', 'Jr.', 'jr.'] #create titles list
 
 name = input('Hello! What is your full name?')                                                      #set variable name to user response
 print(f'Welcome {name}!')                                                                           #display message
@@ -24,6 +25,13 @@ def split_name(name):                                                           
     if len(current) > 0:                                                                            #if the length of curent is greater than 0
         names.append(current)                                                                       #add current to names
     return names                                                                                    #return names
+
+def check_title(name):                                                                              #create function
+    parts = split_name(name)                                                                        #set parts to output of function split_name
+    if parts[0] in titles:                                                                          #if parts at index 0 is present in titles
+        return True                                                                                 #return True                                                                                         
+    else:                                                                                           #else
+        return False                                                                                #return False
 
 def remove_title(name):                                                                             #create function
     parts = split_name(name)                                                                        #set parts to result of function split_name
@@ -180,7 +188,7 @@ def main():                                                                     
     while True:                                                                                     #create while True loop
         time.sleep(3)                                                                               #wait 3 seconds before continuing
         os.system('cls')                                                                            #clear screen
-        option = input('What would you like to do? \n 1. Reverse and Display your name \n 2. count the vowels in your name \n 3. count the number of consonants in your name \n 4. display your first name \n 5. display your last name \n 6. display your middle name \n 7. return boolean if name contains a hyphen \n 8. convert name to all lowercase \n 9. convert name to all uppercase \n 10. scramble the letters of your name \n 11. check if your first name is a palindrome \n 12. display your initials \n (Respond with the corresponding number or stop): ') #set option to user response
+        option = input('What would you like to do? \n 1. Reverse and Display your name \n 2. count the vowels in your name \n 3. count the number of consonants in your name \n 4. display your first name \n 5. display your last name \n 6. display your middle name \n 7. return boolean if name contains a hyphen \n 8. convert name to all lowercase \n 9. convert name to all uppercase \n 10. scramble the letters of your name \n 11. check if your first name is a palindrome \n 12. display your initials \n 13. Check if a title/description is present in your name \n (Respond with the corresponding number or stop): ') #set option to user response
         if option == '1':                                                                           #if option is equal to 1
             print(reverse_and_display(name))                                                        #call function and print output
         elif option == '2':                                                                         #if option is equal to 2
@@ -205,6 +213,8 @@ def main():                                                                     
             print(check_palindrome(name))                                                           #call function and print output
         elif option == '12':                                                                        #if option is equal to 12
             print(get_initials(name))                                                               #call function and print output
+        elif option == '13':                                                                        #if option is equal to 13
+            print(check_title(name))                                                                #call function and print output
         elif option == 'stop':                                                                      #if option is equal to stop
             break                                                                                   #end loop
         else:                                                                                       #else
