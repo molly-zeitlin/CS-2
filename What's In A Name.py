@@ -1,8 +1,8 @@
-#Molly Zeitlin
-#Asks user for their full name, and provides 12 different options to the user to manipulate their orignal entry.
-#9/30/2025
-#does not work properly with numbers/special characters, title/description cannot be anywhere except at the start of inital input
+#Name: Molly Zeitlin
+#Description: Asks user for their full name, and provides 12 different options to the user to manipulate their orignal entry.
 #build a menu, reutrns boolean if name contains a title/distinction ("Dr.", "Sir", etc.) remove titles/distinctions ("Dr.", "Sir", etc.), clear screen, pause during code (using time.sleep)
+#Bugs: does not work properly with numbers/special characters, title/description cannot be anywhere except at the start of inital input
+#1.0 MJZ
 
 import random                                                                                       #import random library
 import os                                                                                           #import os library
