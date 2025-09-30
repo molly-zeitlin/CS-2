@@ -1,8 +1,7 @@
 #Molly Zeitlin
-#explanation of the whole code
-#date
-#
-#challenges
+#Asks user for their full name, and provides 12 different options to the user to manipulate their orignal entry.
+#9/30/2025
+#build a menu, remove titles ("Dr.", "Sir", etc.), clear screen, pause during code (using time.sleep)
 
 import random                                                                                       #import random library
 import os                                                                                           #import os library
@@ -27,7 +26,7 @@ def split_name(name):                                                           
     return names                                                                                    #return names
 
 def remove_title(name):                                                                             #create function
-    parts = split_name(name)                                                                        #set parts to result function split_name
+    parts = split_name(name)                                                                        #set parts to result of function split_name
     if parts[0] in titles:                                                                          #if parts at index 0 is present in titles
         del parts[0]                                                                                #remove parts at index 0 from parts
     new_name = ' '.join(parts)                                                                      #join parts with a space between elements and set to new_name
@@ -118,17 +117,20 @@ def check_hyphen(name):                                                         
         return False                                                                                #return boolean False
 
 def get_initials(name):                                                                             #create function
-    new_name = remove_title(name)
+    new_name = remove_title(name)                                                                   #set new_name to output of function remove_title
     first = return_first_name(new_name)                                                             #set first to output of a function
     middle = return_middle_name(new_name)                                                           #set middle to output of a function
     last = return_last_name(new_name)                                                               #set last to output of a function
     first_initial = str(first[0])                                                                   #set first_initial to first at index 0
     last_initial = str(last[0])                                                                     #set last_initial to last at index 0
-    midname = split_name(middle)                                                                    #split middle with function and set to midname
-    mid_initials = ''                                                                               #set mid_initials to ''
-    for i in midname:                                                                               #create for loop
-        mid_initials = mid_initials + (i[0])                                                        #set mid_initials to mid_initials plus i at index 0
-    initials = first_initial + mid_initials + last_initial                                          #set initials to first_initials plus mid_initials plus last_initial
+    if middle == 'NO MIDDLE NAME':                                                                  #if variable middle is equal to 'NO MIDDLE NAME'
+        initials = first_initial + last_initial                                                     #set initials to first_initial plus last_initial
+    else:                                                                                           #else
+        midname = split_name(middle)                                                                #split middle with function and set to midname
+        mid_initials = ''                                                                           #set mid_initials to ''
+        for i in midname:                                                                           #create for loop
+            mid_initials = mid_initials + (i[0])                                                    #set mid_initials to mid_initials plus i at index 0
+        initials = first_initial + mid_initials + last_initial                                      #set initials to first_initials plus mid_initials plus last_initial
     initials = convert_to_uppercase(initials)                                                       #convert initials to all uppercase
     return initials                                                                                 #return initials
    
