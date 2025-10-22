@@ -1,3 +1,9 @@
+#Author: Molly Zeitlin
+#Description: determines the cost of the shipment of a package
+#Date: 10/22/2025
+#Bugs: must have 5 inputs separated by a comma, accounts for letters and special characters
+#Log: 1.0 MZ
+
 def get_size(l, w, t):                                                                                      #create function
     if 4.25 >= l >= 3.5 and 6 >= w >= 3.5 and .016 >= t >= .007:                                            #if variables match the specified parameters
         return "Regular Post Card"                                                                          #return Regular Post Card
@@ -69,7 +75,7 @@ def main():                                                                     
         if total_cost == "UNMAILABLE":                                                                      #if total_cost is "UNMAILABLE"
             print("UNMAILABLE")                                                                             #display message
         else:                                                                                               #else
-            print(f"Total cost: ${total_cost}")                                                             #display total_cost
+            print(f"{total_cost:.2f}".lstrip("0"))                                                          #display total_cost, including the two values to the right of the deciaml, and no leading zero
         counter +=1                                                                                         #add 1 to counter
 
 main()                                                                                                      #call function
