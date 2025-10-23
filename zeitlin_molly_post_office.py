@@ -75,7 +75,7 @@ def main():                                                                     
         if total_cost == "UNMAILABLE":                                                                      #if total_cost is "UNMAILABLE"
             print("UNMAILABLE")                                                                             #display message
         else:                                                                                               #else
-            print(f"{total_cost:.2f}".lstrip("0"))                                                          #display total_cost, including the two values to the right of the deciaml, and no leading zero
+            print(f"{total_cost:.2f}".lstrip("0"))                                                          #display total_cost, including the two values to the right of the decimal, and no leading zero
         counter +=1                                                                                         #add 1 to counter
 
 main()                                                                                                      #call function
