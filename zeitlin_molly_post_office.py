@@ -1,7 +1,7 @@
 #Author: Molly Zeitlin
 #Description: determines the cost of the shipment of a package
 #Date: 10/22/2025
-#Bugs: must have 5 inputs separated by a comma, accounts for letters and special characters
+#Bugs: must have 5 inputs separated by a comma, DOES NOT account for letters and special characters
 #Log: 1.0 MZ
 
 def get_size(l, w, t):                                                                                      #create function
