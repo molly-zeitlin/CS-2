@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+    body {
+        background-image: url('final_post_office_pic.png');
+        background-color: rgb(208, 243, 255);
+        background-repeat: no-repeat; /* Avoids the image from repeating */
+        background-position: 350px 50px;
+    }
+    input[id="Length"] {
+        border-color: rgb(0, 0, 0);
+    }
+    input[id="Width"] {
+        border-color: rgb(0, 0, 0);
+    }
+    input[id="Thickness"] {
+        border-color: rgb(0, 0, 0);
+    }
+    input[id="zip1"] {
+        border-color: rgb(0, 0, 0);
+    }
+    input[id="zip2"] {
+        border-color:rgb(0, 0, 0);
+    }
+    </style>
+    <script>
+        function get_size(l, w, t)
+        {
+            if ((4.25 >= l) && (l >= 3.5) && (6 >= w) && (w >= 3.5) && (.016 >= t) && (t >= .007))
+                return  "Regular Post Card";
+            else if ((6 >= l) && (l >= 4.25) && (11.5 >= w) && (w >= 6) && (0.15 >= t) && (t >= .007))
+                return "Large Post Card";
+            else if ((6.125 >= l) && (l >= 3.5) && (11.5 >= w) && (w >= 5) && (.25 >= t) && (t >= .016))
+                return "Regular Envelope";
+            else if ((24 >= l) && (l >= 6.125) && (18 >= w) && (w >= 11) && (.5 >= t) && (t >= .25))
+                return "Large Envelope";
+            else if ((l > 24) || (w > 18) || (t > .5))
+            {
+                if (l + 2*(w+t) <= 84)
+                    return "Regular Package";
+                else if ((130 >= l + 2*(w+t)) && (l + 2*(w+t) > 84))
+                    return "Large Package";
+                else
+                    return "UNMAILABLE";
+            }//closes else if
+            else
+                return "UNMAILABLE";            
+        }//package type
+        function get_zip(zip)
+        {
+            if ((zip >= 1) && (zip <= 6999))
+                return 1;
+            else if ((zip >= 7000) && (zip <= 19999))
+                return 2;
+            else if ((zip >= 20000) && (zip <= 25999))
+                return 3;
+            else if ((zip >= 26000) && (zip <= 62999))
+                return 4;
+            else if ((zip >= 63000) && (zip <= 84999))
+                return 5;
+            else if ((zip >= 85000) && (zip <= 99999))
+                return 6;
+            else
+                return "UNMAILABLE";
+        }//determines zip code zone
+        function get_cost(mail_type, distance)
+        {
+            if (mail_type == "Regular Post Card")
+                return (.2 + distance*.03).toString();
+            else if (mail_type == "Large Post Card")
+                return (.37 + distance*.03).toString();
+            else if (mail_type == "Regular Envelope")
+                return (.37 + distance*.04).toString();
+            else if (mail_type == "Large Envelope")
+                return (.6 + distance*.05).toString();
+            else if (mail_type == "Regular Package")
+                return (.95 + distance*.25).toString();
+            else if (mail_type == "Large Package")
+                return (3.95 + distance*.35).toString();
+            else
+                return "UNMAILABLE"
+        }//determines total cost of shipment
+        function main()
+        {
+            // Get values from the input fields and convert the values to numbers (since inputs are strings by default)
+            let l = parseFloat(document.getElementById("Length").value);
+            let w = parseFloat(document.getElementById("Width").value);
+            let t = parseFloat(document.getElementById("Thickness").value);
+            let zip1 = parseFloat(document.getElementById("zip1").value);
+            let zip2 = parseFloat(document.getElementById("zip2").value);
+
+            // Set mail_type to output of function get_size with l, w, t as parameters
+            let mail_type = get_size(l, w, t);
+            
+            // Set variables to output of get_zip function with zip1 parameter and then with zip2 parameter
+            let origin = get_zip(zip1);
+            let destination = get_zip(zip2);
+
+            // Set distance to the absolute value of the difference between the zones of the zipcodes
+            let distance = Math.abs(origin - destination);
+
+            // Set total_cost to output of function get_cost with parameters mail_type and distance
+            let total_cost = parseFloat(get_cost(mail_type, distance))
+
+            // To display with 2 digits after the decimal point
+            cost = total_cost.toFixed(2);
+
+            if (cost.substring(0,1) == '0')
+                {
+                total_cost = cost.substring(1, cost.length);
+                }
+            else
+                {
+                total_cost = cost;
+                }
+
+            // Display the result inside the <p> tag
+            document.getElementById("total_cost").innerText = total_cost;
+        }
+    </script>
+    <body>        
+            <h2>Welcome to the GCDS Post Office!</h2>
+
+            <h3>Enter information about your mail to evaluate cost:</h3>
+            <form>
+            <!-- Input fields -->
+            <label for="Length">Length:</label><br>
+            <input type="number" id="Length" Length="Length"><br>
+            <label for="Width">Width:</label><br>
+            <input type="number" id="Width" Width="Width"><br>
+            <label for="Thickness">Thickness:</label><br>
+            <input type="number" id="Thickness" Thickness="Thickness"><br>
+            <label for="zip1">Zipcode of Origin:</label><br>
+            <input type="number" id="zip1" zip1="zip1"><br>
+            <label for="zip2">Zipcode of Destination:</label><br>
+            <input type="number" id="zip2" zip2="zip2"><br><br>
+
+            <!-- Button that calls the function -->
+            <button onclick="main()">submit</button>
+
+            <!-- Area to display the result -->
+            <p id="total_cost"></p>
+
+            </form>
+    </body>
+
+</html>
