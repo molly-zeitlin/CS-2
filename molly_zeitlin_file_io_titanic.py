@@ -169,17 +169,75 @@ def class_based_analysis(file):
     except:
         print("FILE NOT FOUND")
 
-#fam_size = sibsp + parch + 1
+
+def fam_survival_patterns(file):
+    try:
+        with open("fam_survival_patterns.csv", "w") as output:
+            next(file)
+            surv_fam = 0
+            surv_alone = 0
+            fam_total = 0
+            alone_total = 0
+            for l in file:
+                data = l.strip().split(",")
+                SibSp = float(data[7])
+                Parch = float(data[8])
+                FamilySize = SibSp + Parch + 1
+                if FamilySize > 1:
+                    fam_total += 1
+                    if data[1] == "1":
+                        surv_fam += 1
+                else:
+                    alone_total += 1
+                    if data[1] == "1":
+                        surv_alone +=1
+            fam_surv_rate = round((surv_fam/fam_total)*100)
+            alone_surv_rate = round((surv_alone/alone_total)*100)
+            print(f"Family Survival Rate: {fam_surv_rate}%")
+            output.write(f"Family Survival Rate: {fam_surv_rate}%\n")
+            print(f"Alone Survival Rate: {alone_surv_rate}%")
+            output.write(f"Alone Survival Rate: {alone_surv_rate}%\n")
+            if fam_surv_rate > alone_surv_rate:
+                print("Those travelling with family had a higher chance of survival than those travelling alone")
+                output.write("Those travelling with family had a higher chance of survival than those travelling alone")
+            else:
+                print("Those travelling alone had a higher chance of survival than those travelling with family")
+                output.write("Those travelling alone had a higher chance of survival than those travelling with family")
+    except:
+        print("FILE NOT FOUND")
+
+def data_visualzaion(file):
+    try:
+        with open("data_visualization.csv") as output:
+            output.write("Female", + "Male\n")
+            m_survive = 0
+            m_count = 0
+            f_survive = 0
+            f_count = 0
+            for l in file:
+                data = l.strip().split(",")
+                if data[5] == "male":
+                    m_count +=1
+                    if data[1] == "1":
+                        m_survive +=1
+                elif data[5] == "female":
+                    f_count +=1
+                    if data[1] =="1":
+                        f_survive +=1
+                else:
+                    continue
+            ms_percent = str(round((m_survive / m_count)*100)).lstrip("0")
+            fs_percent = str(round((f_survive / f_count)*100)).lstrip("0")
+            output.write(f"{ms_percent}%", + f"{fs_percent}%")
+    except:
+        print("FILE NOT FOUND")
 
 def main():
     try:
         file = open("titanic.csv", "r")
         i = 0
         while i < 10:
-            user_response = input("What would you like to do?\n1. Load and Display Data from the Titanic to a CSV file\n2. Count the survivors from the Titanic and write to a CSV file\n3. Calculate the survival rates of each gender of passengers from the Titanic and write to a CSV file\n4. Calculate the average age of passengers and write to a CSV file\n5. Analyze data from Titanic based on passenger classes\n6. End program\nEnter the number corresponding to your choice: ")
-
-            #header = file.readline().strip().split(",")  # Read the header row
-            #name_index = header.index("Name")  # Find the index of 'Name' column
+            user_response = input("What would you like to do?\n1. Load and Display Data from the Titanic to a CSV file\n2. Count the survivors from the Titanic and write to a CSV file\n3. Calculate the survival rates of each gender of passengers from the Titanic and write to a CSV file\n4. Calculate the average age of passengers and write to a CSV file\n5. Analyze data from Titanic based on passenger classes\n6. Analyze family survival rates\n7. Visualize data\n8. End program\nEnter the number corresponding to your choice: ")
             if user_response == "1":
                 load_and_display(file)
                 file.seek(1)
@@ -201,6 +259,14 @@ def main():
                 file.seek(1)
                 i+=1
             elif user_response == "6":
+                fam_survival_patterns(file)
+                file.seek(1)
+                i+=1
+            elif user_response == "7":
+                #data_visualzaion(file)
+                file.seek(1)
+                i+=1
+            elif user_response == "8":
                 quit()
             else:
                 print("INVALID RESPONSE!")
