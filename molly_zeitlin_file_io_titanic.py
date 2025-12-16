@@ -1,4 +1,18 @@
+#Author: Molly Zeitlin
+#Description: analyzes a data set from the Titanic and writes information to new files
+#Date: 12/16/2025
+#Bugs: 
+#Log: 1.0 MZ
 def load_and_display(file):
+    '''
+    Display the first 10 rows and print the column names + the total number of passengers
+    Args:
+        file: file with Titanic data
+    Returns:
+        list of first 10 rows from file
+        column names
+        total number of passengers
+    '''
     try:
         with open("display_titanic_data.csv", "w") as output:
             counter = -1
@@ -13,6 +27,13 @@ def load_and_display(file):
         print("FILE NOT FOUND")
     
 def survival_counter(file):
+    '''
+    Calculate and print the overall survival rate
+    Args:
+        file: file with Titanic data
+    Returns:
+        percentage of passengers who survived
+    '''
     try:
         with open("total_survival_counter.csv", "w") as output:
                 survive = 0
@@ -29,6 +50,14 @@ def survival_counter(file):
         print("FILE NOT FOUND")
 
 def survival_by_gender(file):
+    '''
+    Calculate the survival rate for males and females separately + display which gender had a higher survival rate
+    Args:
+        file: file with Titanic data
+    Returns:
+        percentage of female passengers who survived
+        percentage of male passengers who survived
+    '''
     try:
         with open("survival_by_gender.csv", "w") as output:
             m_survive = 0
@@ -66,6 +95,17 @@ def survival_by_gender(file):
         print("FILE NOT FOUND")
 
 def average_age(file):
+    '''
+    Find and print average age of all passengers + average age of survivors vs non-survivors + youngest and oldest passengers
+    Args:
+        file: file with Titanic data
+    Returns:
+        average of all passengers
+        average age of survivors
+        average age of non-survivors
+        age of youngest passenger
+        age of oldest passenger
+    '''
     try:
         with open("age_analysis.csv", "w") as output:
             ages_list = []
@@ -110,6 +150,19 @@ def average_age(file):
         print("FILE NOT FOUND")
 
 def class_based_analysis(file):
+    '''
+    For each passenger class (1st, 2nd, 3rd): Calculate the survival rate + Calculate the average fare paid and create a summary showing which class had the best survival chances
+    Args:
+        file: file with Titanic data
+    Returns:
+        survival rate of 1st class passengers
+        survival rate of 2nd class passengers
+        survival rate of 3rd class passengers
+        average fare paid for 1st class passengers
+        average fare paid for 2nd class passengers
+        average fare paid for 3rd class passengers
+        summary of which class had highest chance of survival
+    '''
     try:
         with open("class_based_analysis.csv", "w") as output:
             next(file)
@@ -171,6 +224,15 @@ def class_based_analysis(file):
 
 
 def fam_survival_patterns(file):
+    '''
+Analyze survival rates based on family size + Determine if traveling alone or with family improved survival chances
+    Args:
+        file: file with Titanic data
+    Returns:
+        surival rate of those travelling with family
+        survival rate of passengers travelling alone
+        determining whether or not travelling with family improved chances of survival
+    '''
     try:
         with open("fam_survival_patterns.csv", "w") as output:
             next(file)
@@ -208,8 +270,8 @@ def fam_survival_patterns(file):
 
 def data_visualzaion(file):
     try:
-        with open("data_visualization.csv") as output:
-            output.write("Female", + "Male\n")
+        with open("data_visualization.csv", "w") as output:
+            output.write("Male"+ "," + "Female\n")
             m_survive = 0
             m_count = 0
             f_survive = 0
@@ -228,7 +290,7 @@ def data_visualzaion(file):
                     continue
             ms_percent = str(round((m_survive / m_count)*100)).lstrip("0")
             fs_percent = str(round((f_survive / f_count)*100)).lstrip("0")
-            output.write(f"{ms_percent}%", + f"{fs_percent}%")
+            output.write(f"{ms_percent}%"+ "," + f"{fs_percent}%")
     except:
         print("FILE NOT FOUND")
 
@@ -263,7 +325,7 @@ def main():
                 file.seek(1)
                 i+=1
             elif user_response == "7":
-                #data_visualzaion(file)
+                data_visualzaion(file)
                 file.seek(1)
                 i+=1
             elif user_response == "8":
