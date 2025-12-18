@@ -14,7 +14,7 @@ def load_and_display(file):
         total number of passengers
     '''
     try:
-        with open("display_titanic_data.csv", "w") as output:
+        with open("display_titanic_data.csv", "w") as output:                                                                           #create a file with designate name, write to it (if already exists, write over it), and set it to variable "output"
             counter = -1
             for line in file:
                 if counter < 10:
@@ -35,17 +35,17 @@ def survival_counter(file):
         percentage of passengers who survived
     '''
     try:
-        with open("total_survival_counter.csv", "w") as output:
-                survive = 0
-                l_count = -1
-                for l in file:
-                    data = l.strip().split(",")
-                    l_count += 1
-                    if data[1] == "1":
-                        survive += 1
-                s_percent = str(round((survive / l_count)*100)).lstrip("0")
-                print(f"Total survival rate: {s_percent}%")
-                output.write(f"Total survival rate: {s_percent}%")
+        with open("total_survival_counter.csv", "w") as output:                                                                         #create a file with designate name, write to it (if already exists, write over it), and set it to variable "output"
+            survive = 0
+            l_count = -1
+            for l in file:
+                data = l.strip().split(",")                                                                                             #separate each element within each line in a file
+                l_count += 1
+                if data[1] == "1":
+                    survive += 1
+            s_percent = str(round((survive / l_count)*100)).lstrip("0")                                                                 #divide value of two variables, multiple that by 100, round that, convert it to a string, and remove first character if is "0"
+            print(f"Total survival rate: {s_percent}%")
+            output.write(f"Total survival rate: {s_percent}%")
     except:
         print("FILE NOT FOUND")
 
@@ -59,13 +59,13 @@ def survival_by_gender(file):
         percentage of male passengers who survived
     '''
     try:
-        with open("survival_by_gender.csv", "w") as output:
+        with open("survival_by_gender.csv", "w") as output:                                                                             #create a file with designate name, write to it (if already exists, write over it), and set it to variable "output"
             m_survive = 0
             m_count = 0
             f_survive = 0
             f_count = 0
             for l in file:
-                data = l.strip().split(",")
+                data = l.strip().split(",")                                                                                             #separate each element within each line in a file
                 if data[5] == "male":
                     m_count +=1
                     if data[1] == "1":
@@ -76,10 +76,10 @@ def survival_by_gender(file):
                         f_survive +=1
                 else:
                     continue
-            ms_percent = str(round((m_survive / m_count)*100)).lstrip("0")
+            ms_percent = str(round((m_survive / m_count)*100)).lstrip("0")                                                              #divide value of two variables, multiple that by 100, round that, convert it to a string, and remove first character if is "0"
             print(f"Male passenger survival rate: {ms_percent}%")
             output.write(f"Male passenger survival rate: {ms_percent}%\n")
-            fs_percent = str(round((f_survive / f_count)*100)).lstrip("0")
+            fs_percent = str(round((f_survive / f_count)*100)).lstrip("0")                                                              #divide value of two variables, multiple that by 100, round that, convert it to a string, and remove first character if is "0"
             print(f"Female passenger surival rate: {fs_percent}%")
             output.write(f"Female passenger surival rate: {fs_percent}%\n")
             if ms_percent > fs_percent:
@@ -107,13 +107,13 @@ def average_age(file):
         age of oldest passenger
     '''
     try:
-        with open("age_analysis.csv", "w") as output:
+        with open("age_analysis.csv", "w") as output:                                                                                       #create a file with designate name, write to it (if already exists, write over it), and set it to variable "output"
             ages_list = []
             s_ages_list = []
             d_ages_list = []
-            next(file)
+            next(file)                                                                                                                      #skip to next line in file
             for l in file:
-                data = l.strip().split(",")
+                data = l.strip().split(",")                                                                                                 #separate each element within each line in a file
                 try:
                     ages_list.append(float(data[6]))
                 except:
@@ -164,8 +164,8 @@ def class_based_analysis(file):
         summary of which class had highest chance of survival
     '''
     try:
-        with open("class_based_analysis.csv", "w") as output:
-            next(file)
+        with open("class_based_analysis.csv", "w") as output:                                                                           #create a file with designate name, write to it (if already exists, write over it), and set it to variable "output"
+            next(file)                                                                                                                  #skip to next line in file
             class1 = 0
             class2 = 0
             class3 = 0
@@ -176,7 +176,7 @@ def class_based_analysis(file):
             survivors2 = 0
             survivors3 = 0
             for l in file:
-                data = l.strip().split(",")
+                data = l.strip().split(",")                                                                                             #separate each element within each line in a file
                 if data[2] == "1":
                     class1+=1
                     fare_total1.append(float(data[10]))
@@ -192,13 +192,13 @@ def class_based_analysis(file):
                     fare_total3.append(float(data[10]))
                     if data[1] == "1":
                         survivors3+=1
-            s_rate1 = str(round((survivors1/class1)*100)).lstrip("0")
+            s_rate1 = str(round((survivors1/class1)*100)).lstrip("0")                                                                   #divide value of two variables, multiple that by 100, round that, convert it to a string, and remove first character if is "0"
             print(f"{s_rate1}% of 1st class passengers survived")
             output.write(f"{s_rate1}% of 1st class passengers survived\n")
-            s_rate2 = str(round((survivors2/class2)*100)).lstrip("0")
+            s_rate2 = str(round((survivors2/class2)*100)).lstrip("0")                                                                   #divide value of two variables, multiple that by 100, round that, convert it to a string, and remove first character if is "0"
             print(f"{s_rate2}% of 2nd class passengers survived")
             output.write(f"{s_rate2}% of 2nd class passengers survived\n")
-            s_rate3 = str(round((survivors3/class3)*100)).lstrip("0")
+            s_rate3 = str(round((survivors3/class3)*100)).lstrip("0")                                                                   #divide value of two variables, multiple that by 100, round that, convert it to a string, and remove first character if is "0"
             print(f"{s_rate3}% of 3rd class passengers survived")
             output.write(f"{s_rate3}% of 3rd class passengers survived\n")
             a_fare1 = round(sum(fare_total1)/len(fare_total1))
@@ -234,14 +234,14 @@ Analyze survival rates based on family size + Determine if traveling alone or wi
         determining whether or not travelling with family improved chances of survival
     '''
     try:
-        with open("fam_survival_patterns.csv", "w") as output:
-            next(file)
+        with open("fam_survival_patterns.csv", "w") as output:                                                                          #create a file with designate name, write to it (if already exists, write over it), and set it to variable "output"
+            next(file)                                                                                                                  #skip to next line in file
             surv_fam = 0
             surv_alone = 0
             fam_total = 0
             alone_total = 0
             for l in file:
-                data = l.strip().split(",")
+                data = l.strip().split(",")                                                                                             #separate each element within each line in a file
                 SibSp = float(data[7])
                 Parch = float(data[8])
                 FamilySize = SibSp + Parch + 1
@@ -253,8 +253,8 @@ Analyze survival rates based on family size + Determine if traveling alone or wi
                     alone_total += 1
                     if data[1] == "1":
                         surv_alone +=1
-            fam_surv_rate = round((surv_fam/fam_total)*100)
-            alone_surv_rate = round((surv_alone/alone_total)*100)
+            fam_surv_rate = round((surv_fam/fam_total)*100)                                                                             #divide value of two variables, multiple that by 100, round it
+            alone_surv_rate = round((surv_alone/alone_total)*100)                                                                       #divide value of two variables, multiple that by 100, round it
             print(f"Family Survival Rate: {fam_surv_rate}%")
             output.write(f"Family Survival Rate: {fam_surv_rate}%\n")
             print(f"Alone Survival Rate: {alone_surv_rate}%")
@@ -268,67 +268,30 @@ Analyze survival rates based on family size + Determine if traveling alone or wi
     except:
         print("FILE NOT FOUND")
 
-def data_visualzaion(file):
-    try:
-        with open("data_visualization.csv", "w") as output:
-            output.write("Male"+ "," + "Female\n")
-            m_survive = 0
-            m_count = 0
-            f_survive = 0
-            f_count = 0
-            for l in file:
-                data = l.strip().split(",")
-                if data[5] == "male":
-                    m_count +=1
-                    if data[1] == "1":
-                        m_survive +=1
-                elif data[5] == "female":
-                    f_count +=1
-                    if data[1] =="1":
-                        f_survive +=1
-                else:
-                    continue
-            ms_percent = str(round((m_survive / m_count)*100)).lstrip("0")
-            fs_percent = str(round((f_survive / f_count)*100)).lstrip("0")
-            output.write(f"{ms_percent}%"+ "," + f"{fs_percent}%")
-    except:
-        print("FILE NOT FOUND")
-
 def main():
     try:
         file = open("titanic.csv", "r")
-        i = 0
-        while i < 10:
-            user_response = input("What would you like to do?\n1. Load and Display Data from the Titanic to a CSV file\n2. Count the survivors from the Titanic and write to a CSV file\n3. Calculate the survival rates of each gender of passengers from the Titanic and write to a CSV file\n4. Calculate the average age of passengers and write to a CSV file\n5. Analyze data from Titanic based on passenger classes\n6. Analyze family survival rates\n7. Visualize data\n8. End program\nEnter the number corresponding to your choice: ")
+        while True:
+            user_response = input("What would you like to do?\n1. Load and Display Data from the Titanic to a CSV file\n2. Count the survivors from the Titanic and write to a CSV file\n3. Calculate the survival rates of each gender of passengers from the Titanic and write to a CSV file\n4. Calculate the average age of passengers and write to a CSV file\n5. Analyze data from Titanic based on passenger classes\n6. Analyze family survival rates\n7. End program\nEnter the number corresponding to your choice: ")
             if user_response == "1":
                 load_and_display(file)
-                file.seek(1)
-                i+=1
+                file.seek(1)                                                                                                            #reset pointer to top of data set
             elif user_response == "2":
                 survival_counter(file)
                 file.seek(1)
-                i+=1
             elif user_response == "3":
                 survival_by_gender(file)
                 file.seek(1)
-                i+=1
             elif user_response == "4":
                 average_age(file)
                 file.seek(1)
-                i+=1
             elif user_response == "5":
                 class_based_analysis(file)
                 file.seek(1)
-                i+=1
             elif user_response == "6":
                 fam_survival_patterns(file)
                 file.seek(1)
-                i+=1
             elif user_response == "7":
-                data_visualzaion(file)
-                file.seek(1)
-                i+=1
-            elif user_response == "8":
                 quit()
             else:
                 print("INVALID RESPONSE!")
