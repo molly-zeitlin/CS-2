@@ -1,7 +1,7 @@
 #Author: Molly Zeitlin
-#Description: analyzes a data set from the Titanic and writes information to new files
 #Date: 12/16/2025
-#Bugs: 
+#Description: analyzes a data set from the Titanic and writes information to new files
+#List of completed functions: load and display, survival counter, survival by gender, average age, class based analysis, and family survival patterns
 #Log: 1.0 MZ
 def load_and_display(file):
     '''
