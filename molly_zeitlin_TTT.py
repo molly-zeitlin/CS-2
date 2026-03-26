@@ -13,21 +13,21 @@ def display_board(board):
 def get_move(board, player, xo):
     '''Get valid row and column for computer or player move.'''
     while True:
-        if player == "comp":
-            move = random.randint(1, 9)
-        else:
-            try:
-                move = int(input(f"Player {xo}, enter number where you would like to go for your next move: "))
-            except ValueError:
-                print("INVALID RESPONSE\nplease enter valid number")
-                continue
+        if player == "comp":                                                                                    #if it is computer's turn
+            move = random.randint(1, 9)                                                                         #set variable move to random number between 1 and 9 (inclusive)
+        else:                                                                                                   #if is NOT computer's turn
+            try:                                                                                                #try
+                move = int(input(f"Player {xo}, enter number where you would like to go for your next move: ")) #set variable move to user response cornverted to an integer
+            except ValueError:                                                                                  #except if error occurs becuase user did not respond with an integer
+                print("INVALID RESPONSE\nplease enter valid number")                                            #display message
+                continue                                                                                        #restart while loop
 
-        if move == 1:
-            if board[0][0] == "| 1 |":
-                board[0][0] = (f"| {xo} |")
-                break
-            elif player == "user":
-                print("That space is already taken: please enter valid space")
+        if move == 1:                                                                                           #if variable move is set to 1
+            if board[0][0] == "| 1 |":                                                                          #if 1 spot is available
+                board[0][0] = (f"| {xo} |")                                                                     #set 1 spot to x or o (based on which player's turn it is)
+                break                                                                                           #end loop
+            elif player == "user":                                                                              #if 1 spot is unavaible and it is a user's turn
+                print("That space is already taken: please enter valid space")                                  #display message
         elif move == 2:
             if board[0][1] == "| 2 |":
                 board[0][1] = (f"| {xo} |")
@@ -93,7 +93,7 @@ def play_game():
     """Run one complete game of Tic-Tac-Toe."""
     turns = 0
     while True:
-        board= [
+        board= [                                                            #build 2-dimensional board
         ['| 1 |', '| 2 |', '| 3 |'],
         ['| 4 |', '| 5 |', '| 6 |'],
         ['| 7 |', '| 8 |', '| 9 |']
