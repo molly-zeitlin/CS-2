@@ -1,5 +1,8 @@
-# Tic-Tac-Toe
-# Molly Zeitlin | 2/19/2026
+# Author: Molly Zeitlin
+# Date: 2/19/2026
+#Description: runs one complete game of Tic Tac Toe
+#List of completed functions: display_board, get_move, check_winner, play_game
+#Log: 1.0 MZ
 
 import random
 
