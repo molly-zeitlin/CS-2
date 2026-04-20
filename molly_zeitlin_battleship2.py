@@ -14,8 +14,7 @@ def display_board(board, player):
     Print the board in a user-friendly format.
     Args:
         board: 2 dimensional array
-    Returns:
-        print: the board in a user-friendly format
+    Returns: void
     '''
     print(f"Here is {player}'s board:")
     for row in board:    #create for loop to isolate each row
@@ -51,7 +50,6 @@ def get_coordinates(board, player):
     Returns:
         row: row where user wants to go for next move
         column: column where user wants to go for next mvove
-        print: prompts user to (r)enter numbers for coordinate points
     '''
     while True:
         try:
@@ -84,8 +82,6 @@ def player_move(board, secret_board, row,column, player):
         column: value of the column user wants to shoot at
     Returns:
         board: 2 dimensional array (altered with "hits" or "misses")
-        print:
-            inform user whether they "missed" or "hit" a ship
     '''
     if secret_board[row][column] == "| s |":
         board[row][column] = "| H |"
