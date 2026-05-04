@@ -39,7 +39,6 @@ def choose_ships(secret_board):
             secret_board[row][column] = "| s |"
             i+=1
         else:
-            i+=1
             continue
     return secret_board
 
