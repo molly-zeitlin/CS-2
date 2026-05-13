@@ -6,7 +6,7 @@
 
 def factorial(n):
     '''
-    Calculate the factorial of n
+    Description: Calculate the factorial of n
     Arguments:
         n (int): the number to calculatre the factorial of
     Returns:
@@ -18,7 +18,7 @@ def factorial(n):
 
 def summation(n):
     '''
-    Calculate the summation of n
+    Description: Calculate the summation of n
     Arguments:
         n (int): the number to calculate the summation of
     Returns:
@@ -30,7 +30,7 @@ def summation(n):
 
 def powers(a,n):
     '''
-    Calcuate the value of a number to the power of another number
+    Description: Calcuate the value of a number to the power of another number
     Arguments:
         a (int): the base of the exponential function
         n (int): the exponent
@@ -43,8 +43,8 @@ def powers(a,n):
 
 def sum_of_digits(n):
     '''
-    Calculate the sum of the digits of a number
-    Arguements:
+    Description: Calculate the sum of the digits of a number
+    Arguments:
         n (int): the number to calculate the sum of its digits
     Returns:
         (int) the sum of the digits of n
@@ -55,8 +55,8 @@ def sum_of_digits(n):
 
 def fibonacci(n):
     '''
-    Find the value of a number in Fibonacci's sequence based on its index
-    Arguemnets:
+    Description: Find the value of a number in Fibonacci's sequence based on its index
+    Argumnets:
         n (int): the index of a number in Fibonacci's sequence
     Returns:
         (int) a value in Fibonacci's sequence
@@ -69,7 +69,7 @@ def fibonacci(n):
 
 def gcd(x,y):
     '''
-    Find the greatest common denominator of two numbers
+    Description: Find the greatest common denominator of two numbers
     Arguments:
         x (int): a number
         y (int): another number
@@ -83,9 +83,8 @@ def gcd(x,y):
 def main():
     name = input("Enter your name: ")
     print(f"Welcome {name}!")
-    turns = 0
     while True:
-        user_choice = input("1. Find the factorial of a number\n2. Find the summation of a number\n3. Find the value a number to the power of another number\n4. Find the sum of a number's digits\n5. Calculate a number in Fibonacci's sequence\n6. Find the greatest common demoninator of two numbers\n7. or quit!\nWhich of the option would you like to do?")
+        user_choice = input("1. Find the factorial of a number\n2. Find the summation of a number\n3. Find the value a number to the power of another number\n4. Find the sum of a number's digits\n5. Calculate a number in Fibonacci's sequence\n6. Find the greatest common demoninator of two numbers\n7. or quit!\nWhich of the option would you like to do? ")
         if user_choice == "1":
             fac_number = input("Enter the number you want to find the factorial of: ")
             try:
@@ -99,7 +98,7 @@ def main():
             except ValueError:
                 print("Enter valid numbers!!")
         elif user_choice == "3":
-            pow_number1 = input("Enter the number you want to start with: ")
+            pow_number1 = input("Enter the base: ")
             pow_number2 = input("Enter the exponent: ")
             try:
                 print(powers(int(pow_number1), int(pow_number2)))
