@@ -1,3 +1,9 @@
+#Author: Molly Zeitlin
+#Description: asks user make choices from a menu that use recursive functions to make various calculations
+#Date: 5/13/2026
+#Completed Functions: factorial, summation, powers, sum_of_digits, fibonacci, and gcd
+#Log: 1.0 MZ
+
 def factorial(n):
     '''
     Calculate the factorial of n
@@ -82,30 +88,42 @@ def main():
         user_choice = input("1. Find the factorial of a number\n2. Find the summation of a number\n3. Find the value a number to the power of another number\n4. Find the sum of a number's digits\n5. Calculate a number in Fibonacci's sequence\n6. Find the greatest common demoninator of two numbers\n7. or quit!\nWhich of the option would you like to do?")
         if user_choice == "1":
             fac_number = input("Enter the number you want to find the factorial of: ")
-            print(factorial(int(fac_number)))
-            turns +=1
+            try:
+                print(factorial(int(fac_number)))
+            except ValueError:
+                print("Enter valid numbers!!")
         elif user_choice == "2":
             sum_number = input("Enter the number you want to find the summation of: ")
-            print(summation(int(sum_number)))
-            turns +=1
+            try:
+                print(summation(int(sum_number)))
+            except ValueError:
+                print("Enter valid numbers!!")
         elif user_choice == "3":
             pow_number1 = input("Enter the number you want to start with: ")
             pow_number2 = input("Enter the exponent: ")
-            print(powers(int(pow_number1), int(pow_number2)))
-            turns +=1
+            try:
+                print(powers(int(pow_number1), int(pow_number2)))
+            except ValueError:
+                print("Enter valid numbers!!")
         elif user_choice == "4":
             digits_number = input("Enter the number you want to find the sum of its digits: ")
-            print(sum_of_digits(int(digits_number)))
-            turns +=1
+            try:
+                print(sum_of_digits(int(digits_number)))
+            except ValueError:
+                print("Enter valid numbers!!")
         elif user_choice == "5":
             fib_number = input("Enter the index of the number you want find in Fibonacci's seuqence: ")
-            print(fibonacci(int(fib_number)))
-            turns +=1
+            try:
+                print(fibonacci(int(fib_number)))
+            except ValueError:
+                print("Enter valid numbers!!")
         elif user_choice == "6":
             gcd_number1 = input("Enter your first number: ")
             gcd_number2 = input("Enter your second number: ")
-            print(gcd(int(gcd_number1), int(gcd_number2)))
-            turns +=1
+            try:
+                print(gcd(int(gcd_number1), int(gcd_number2)))
+            except ValueError:
+                print("Enter valid numbers!!")
         elif user_choice == "7":
             break
         else:
