@@ -3,6 +3,7 @@
 #Date: 5/13/2026
 #Completed Functions: factorial, summation, powers, sum_of_digits, fibonacci, and gcd
 #Log: 1.0 MZ
+#graded by: Rapha - bugs: Will lag if fibonacci sequence inputted a high number
 
 def factorial(n):
     '''
